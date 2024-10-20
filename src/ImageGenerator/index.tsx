@@ -55,7 +55,7 @@ const ImageGenerator: React.FC = () => {
 
     return (
         <div className="container" style={{ marginTop: '50px' }}>
-            <h2>Galeria de Fotos</h2>
+            <h2>Gerador de imagens</h2>
             <input 
                 type="text" 
                 value={query} 

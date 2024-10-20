@@ -102,7 +102,7 @@ const converters = [
   { component: <ConverterWordToPDF />, name: 'Conversor Word para PDF' },
   { component: <ExpenseCalculator />, name: 'Calculadora de Despesas' },
   { component: <BalanceCalculator />, name: 'Calculadora de Entradas e Saídas' },
-  { component: <ImageGenerator />, name: 'Gerador de Imagens' },
+  { component: <ImageGenerator />, name: 'Gerador de Imagens, galeria de fotos' },
 ];
 
 function App() {

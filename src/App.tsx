@@ -15,6 +15,7 @@ import PowerConverter from './PowerConverter';
 import TimeConverter from './TimeConverter';
 import DataConverter from './DataConverter';
 import BitConverter from './BitConverter';
+import PressureConverter from './PressureConverter';
 
 const GridContainer = styled.div`
   display: grid;
@@ -77,7 +78,7 @@ const converters = [
   { component: <TimeConverter />, name: 'Conversor de Tempo' },
   { component: <DataConverter />, name: 'Conversor de Dados' },
   { component: <BitConverter />, name: 'Conversor de Bits' },
-  // { component: <PressureConverter />, name: 'Conversor de Pressão' }, // Novo
+  { component: <PressureConverter />, name: 'Conversor de Pressão' },
   // { component: <EnergyConverter />, name: 'Conversor de Energia' }, // Novo
   // { component: <FuelEfficiencyCalculator />, name: 'Calculadora de Eficiência de Combustível' }, // Novo
   // { component: <CookingConverter />, name: 'Conversor de Cozinha' }, // Novo

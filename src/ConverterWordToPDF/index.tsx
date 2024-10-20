@@ -11,6 +11,7 @@ const Converter: React.FC = () => {
         if (selectedFile) {
             setFile(selectedFile);
             setError(null);
+            
         }
     };
 

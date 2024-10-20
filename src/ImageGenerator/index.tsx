@@ -1,68 +1,58 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const ImageGenerator: React.FC = () => {
-    const [prompt, setPrompt] = useState<string>('');
-    const [imageUrls, setImageUrls] = useState<string[]>([]);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [images, setImages] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
     const fetchImages = async () => {
-        setLoading(true);
-        setError(null);
-        setImageUrls([]); // Limpa as imagens anteriores
+        setLoading(true)
+            const urlGaleria = "https://www.pexels.com/pt-br/api/v3/sponsored-media/photos/gato?number=4&page=1";
+            try {
+                const response = await axios.get(urlGaleria, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer 2008730472_xLQGobuzij93BK4AOBV_2Q',
+                    },
+                });
 
-        const urlFlickr = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-
-        try {
-            const response = await axios.get(urlFlickr, {
-                params: {
-                    tags: prompt,
-                    tagmode: "any",
-                    format: "json"
-                }
-            });
-
-            // Limita a 6 imagens
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const images = response.data.items.slice(0, 6).map((item: any) => item.media.m);
-            setImageUrls(images);
-        } catch (err) {
-            console.error(err);
-            setError('Erro ao obter imagens do Flickr. Tente novamente.');
-        } finally {
-            setLoading(false);
-        }
-    };
+                // Atualiza o estado com as fotos retornadas
+                setImages(response.data.photos); 
+            } catch (err) {
+                console.error(err)
+                setError('Erro ao obter fotos');
+            } finally {
+                setLoading(false);
+            }
+        };
 
     return (
-        <div style={{ textAlign: 'center', margin: '20px' }}>
-            <h1>Galeria de Imagens do Flickr</h1>
-            <input
-                type="text"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                placeholder="Digite uma tag (ex: paisagens)"
-                style={{ padding: '10px', fontSize: '16px', margin: '10px' }}
-            />
-            <button
-                onClick={fetchImages}
-                style={{ padding: '10px', fontSize: '16px', margin: '10px' }}
-                disabled={loading}
-            >
-                {loading ? 'Buscando...' : 'Buscar Imagens'}
-            </button>
+        <div className="container" style={{ marginTop: '50px' }}>
+            <h2>Galeria de Fotos</h2>
+            {loading && <p>Carregando...</p>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
-            {imageUrls.length > 0 && (
-                <div>
-                    <h2>Imagens Encontradas:</h2>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-                        {imageUrls.map((url, index) => (
-                            <img key={index} src={url} alt={`Imagem ${index + 1}`} style={{ maxWidth: '200px', height: 'auto', margin: '10px' }} />
-                        ))}
-                    </div>
-                </div>
-            )}
+            <div className="galeria">
+                <ul id="flickr" style={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0, justifyContent: 'space-between' }}>
+                    {images.map((item) => (
+                        <li key={item.id} style={{ marginBottom: '25px' }}>
+                            <a href={item.src.original} target="_blank" rel="noopener noreferrer">
+                                <div className="card" style={{ width: '18rem' }}>
+                                    <img className="card-img-top" alt={item.alt} title={item.alt} src={item.src.medium} />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{item.alt}</h5>
+                                        <p className="card-text">
+                                            <strong>Fotógrafo:</strong> {item.photographer}
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <button onClick={() => fetchImages()}>Gerar imagens</button>
         </div>
     );
 };

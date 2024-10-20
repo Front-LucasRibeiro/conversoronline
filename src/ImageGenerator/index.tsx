@@ -1,3 +1,4 @@
+import 'isomorphic-fetch';
 import React, { useState } from 'react';
 import { createClient, Photo } from 'pexels';
 
@@ -19,7 +20,7 @@ const ImageGenerator: React.FC = () => {
     const [query, setQuery] = useState<string>('gato'); // Estado para armazenar a query
 
     // Cria o cliente Pexels com a sua chave API
-    const client = createClient('JGJ33jJNnAsAvPr07qEjAlp2lOBnqonjn8509obY2QSvDU68XA9gthDv');
+    const client = createClient(import.meta.env.VITE_PEXELS_API_KEY);
 
     const fetchImages = async () => {
         setLoading(true);
@@ -67,7 +68,13 @@ const ImageGenerator: React.FC = () => {
                         <li key={item.id} style={{ marginBottom: '25px' }}>
                             <a href={item.src.original} target="_blank" rel="noopener noreferrer">
                                 <div className="card" style={{ width: '18rem' }}>
-                                    <img className="card-img-top" width='100%' alt={item.alt || 'Imagem'} title={item.alt || 'Imagem'} src={item.src.medium} />
+                                    <img 
+                                        className="card-img-top" 
+                                        width='100%' 
+                                        alt={item.alt || 'Imagem'} 
+                                        title={item.alt || 'Imagem'} 
+                                        src={item.src.medium} 
+                                    />
                                 </div>
                             </a>
                         </li>

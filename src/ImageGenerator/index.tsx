@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
-import { createClient } from 'pexels';
+import { createClient, Photo } from 'pexels';
+
+// Define um tipo para o estado das imagens
+interface ImageState {
+    id: number;
+    src: {
+        original: string;
+        medium: string;
+    };
+    photographer: string;
+    alt: string | null; // Permite que 'alt' seja string ou null
+}
 
 const ImageGenerator: React.FC = () => {
-    const [images, setImages] = useState<any[]>([]);
+    const [images, setImages] = useState<ImageState[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [query, setQuery] = useState<string>('gato'); // Estado para armazenar a query
@@ -15,8 +26,20 @@ const ImageGenerator: React.FC = () => {
         setError(null); // Limpa o erro anterior ao iniciar a nova requisição
 
         try {
-            const response = await client.photos.search({ query, per_page: 15, page: 1 }); // Usa a query dinâmica
-            setImages(response.photos); // Atualiza o estado com as fotos retornadas
+            const response = await client.photos.search({ query, per_page: 15, page: 1 });
+
+            // Verifica se a resposta é válida antes de acessar 'photos'
+            if ('photos' in response) {
+                const fetchedImages: ImageState[] = response.photos.map((photo: Photo) => ({
+                    id: photo.id,
+                    src: photo.src,
+                    photographer: photo.photographer,
+                    alt: photo.alt || '', // Substitui null por uma string vazia
+                }));
+                setImages(fetchedImages); // Atualiza o estado com as fotos retornadas
+            } else {
+                setError('Erro ao obter fotos');
+            }
         } catch (err) {
             console.error(err);
             setError('Erro ao obter fotos');
@@ -44,7 +67,7 @@ const ImageGenerator: React.FC = () => {
                         <li key={item.id} style={{ marginBottom: '25px' }}>
                             <a href={item.src.original} target="_blank" rel="noopener noreferrer">
                                 <div className="card" style={{ width: '18rem' }}>
-                                    <img className="card-img-top" width='100%' alt={item.alt} title={item.alt} src={item.src.medium} />
+                                    <img className="card-img-top" width='100%' alt={item.alt || 'Imagem'} title={item.alt || 'Imagem'} src={item.src.medium} />
                                 </div>
                             </a>
                         </li>

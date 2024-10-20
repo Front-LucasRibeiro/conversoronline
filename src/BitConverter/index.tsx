@@ -1,29 +1,38 @@
 import React, { useState } from 'react';
 
+enum Units {
+    Bits = 'bits',
+    Bytes = 'bytes',
+    Kilobits = 'kilobits',
+    Kilobytes = 'kilobytes',
+    Megabits = 'megabits',
+    Megabytes = 'megabytes',
+}
+
+const unitsMap: Record<Units, number> = {
+    [Units.Bits]: 1,
+    [Units.Bytes]: 8,
+    [Units.Kilobits]: 1000,
+    [Units.Kilobytes]: 8000,
+    [Units.Megabits]: 1000000,
+    [Units.Megabytes]: 8000000,
+};
+
 const BitConverter: React.FC = () => {
     const [value, setValue] = useState<string>('');
-    const [fromUnit, setFromUnit] = useState<string>('bits');
-    const [toUnit, setToUnit] = useState<string>('bits');
+    const [fromUnit, setFromUnit] = useState<Units>(Units.Bits);
+    const [toUnit, setToUnit] = useState<Units>(Units.Bits);
     const [result, setResult] = useState<string[]>([]);
-
-    const units = {
-        bits: 1,
-        bytes: 8,
-        kilobits: 1000,
-        kilobytes: 8000,
-        megabits: 1000000,
-        megabytes: 8000000,
-    };
 
     const convert = () => {
         const inputValue = parseFloat(value);
-        if (isNaN(inputValue)) {
-            setResult(["Por favor, insira um valor válido."]);
+        if (isNaN(inputValue) || inputValue < 0) {
+            setResult(["Por favor, insira um valor válido e não negativo."]);
             return;
         }
 
-        const inputInBits = inputValue * units[fromUnit];
-        const convertedValue = inputInBits / units[toUnit];
+        const inputInBits = inputValue * unitsMap[fromUnit];
+        const convertedValue = inputInBits / unitsMap[toUnit];
 
         setResult([
             `Resultado:`,
@@ -43,10 +52,10 @@ const BitConverter: React.FC = () => {
             />
             <select 
                 value={fromUnit} 
-                onChange={(e) => setFromUnit(e.target.value)} 
+                onChange={(e) => setFromUnit(e.target.value as Units)} 
                 style={{ padding: '10px', fontSize: '16px', margin: '10px' }}
             >
-                {Object.keys(units).map((unit) => (
+                {Object.values(Units).map((unit) => (
                     <option key={unit} value={unit}>
                         {unit.charAt(0).toUpperCase() + unit.slice(1)}
                     </option>
@@ -55,10 +64,10 @@ const BitConverter: React.FC = () => {
             <span>para</span>
             <select 
                 value={toUnit} 
-                onChange={(e) => setToUnit(e.target.value)} 
+                onChange={(e) => setToUnit(e.target.value as Units)} 
                 style={{ padding: '10px', fontSize: '16px', margin: '10px' }}
             >
-                {Object.keys(units).map((unit) => (
+                {Object.values(Units).map((unit) => (
                     <option key={unit} value={unit}>
                         {unit.charAt(0).toUpperCase() + unit.slice(1)}
                     </option>

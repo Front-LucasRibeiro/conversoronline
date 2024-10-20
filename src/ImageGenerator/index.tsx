@@ -1,6 +1,5 @@
-import 'isomorphic-fetch';
 import React, { useState } from 'react';
-import { createClient, Photo } from 'pexels';
+import axios from 'axios';
 
 // Define um tipo para o estado das imagens
 interface ImageState {
@@ -10,34 +9,39 @@ interface ImageState {
         medium: string;
     };
     photographer: string;
-    alt: string | null; // Permite que 'alt' seja string ou null
+    alt: string | null;
 }
 
 const ImageGenerator: React.FC = () => {
     const [images, setImages] = useState<ImageState[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const [query, setQuery] = useState<string>('gato'); // Estado para armazenar a query
-
-    // Cria o cliente Pexels com a sua chave API
-    const client = createClient(import.meta.env.VITE_PEXELS_API_KEY);
+    const [query, setQuery] = useState<string>('gato');
 
     const fetchImages = async () => {
         setLoading(true);
-        setError(null); // Limpa o erro anterior ao iniciar a nova requisição
+        setError(null);
 
         try {
-            const response = await client.photos.search({ query, per_page: 15, page: 1 });
+            const response = await axios.get('https://api.pexels.com/v1/search', {
+                headers: {
+                    Authorization: import.meta.env.VITE_PEXELS_API_KEY,
+                },
+                params: {
+                    query,
+                    per_page: 15,
+                    page: 1,
+                },
+            });
 
-            // Verifica se a resposta é válida antes de acessar 'photos'
-            if ('photos' in response) {
-                const fetchedImages: ImageState[] = response.photos.map((photo: Photo) => ({
+            if (response.data.photos) {
+                const fetchedImages: ImageState[] = response.data.photos.map((photo: any) => ({
                     id: photo.id,
                     src: photo.src,
                     photographer: photo.photographer,
-                    alt: photo.alt || '', // Substitui null por uma string vazia
+                    alt: photo.alt || '',
                 }));
-                setImages(fetchedImages); // Atualiza o estado com as fotos retornadas
+                setImages(fetchedImages);
             } else {
                 setError('Erro ao obter fotos');
             }
@@ -55,15 +59,16 @@ const ImageGenerator: React.FC = () => {
             <input 
                 type="text" 
                 value={query} 
-                onChange={(e) => setQuery(e.target.value)} // Atualiza o estado da query
+                onChange={(e) => setQuery(e.target.value)} 
                 placeholder="Digite a busca..." 
                 style={{ marginBottom: '20px', padding: '8px', width: '200px' }}
             />
-            <button onClick={fetchImages}>Gerar imagens</button>
-            {loading && <p>Carregando...</p>}
+            <button onClick={fetchImages} disabled={loading}>
+                {loading ? 'Carregando...' : 'Gerar imagens'}
+            </button>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <div className="galeria">
-                <ul id="flickr" style={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0, justifyContent: 'space-between' }}>
+                <ul style={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0, justifyContent: 'space-between' }}>
                     {images.map((item) => (
                         <li key={item.id} style={{ marginBottom: '25px' }}>
                             <a href={item.src.original} target="_blank" rel="noopener noreferrer">

@@ -3,7 +3,7 @@ import { useState } from 'react';
 export default function TemperatureConverter() {
     const [temperature, setTemperature] = useState('');
     const [unit, setUnit] = useState('Celsius');
-    const [result, setResult] = useState<unknown>([]);
+    const [result, setResult] = useState<string[]>([]);
 
     const convert = () => {
         const tempValue = parseFloat(temperature);

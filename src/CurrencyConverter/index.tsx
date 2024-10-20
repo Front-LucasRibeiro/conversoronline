@@ -8,7 +8,6 @@ const CurrencyConverter: React.FC = () => {
     const [exchangeRates, setExchangeRates] = useState<{ [key: string]: number }>({});
     const [loading, setLoading] = useState<boolean>(true);
 
-    // URL da API (substitua 'YOUR_API_KEY' pela sua chave de API se necessário)
     const API_URL = 'https://api.exchangerate-api.com/v4/latest/USD';
 
     useEffect(() => {
@@ -70,7 +69,6 @@ const CurrencyConverter: React.FC = () => {
         DKK: 'Coroa Dinamarquesa',
         IDR: 'Rupia Indonésia',
         HUF: 'Florim Húngaro',
-        BRL: 'Real Brasileiro',
         ARS: 'Peso Argentino',
         CLP: 'Peso Chileno',
         COP: 'Peso Colombiano',
@@ -80,7 +78,6 @@ const CurrencyConverter: React.FC = () => {
         KZT: 'Tenge Cazaque',
         PKR: 'Rupia Paquistanesa',
         VND: 'Dong Vietnamita',
-        JPY: 'Iene Japonês',
     };
 
     return (

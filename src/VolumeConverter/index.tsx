@@ -5,6 +5,11 @@ const VolumeConverter: React.FC = () => {
     const [unit, setUnit] = useState<string>('L');
     const [result, setResult] = useState<string[]>([]);
 
+
+        let liters: number;
+        let milliliters: number;
+        let gallons: number;
+
     const convert = () => {
         const volumeValue = parseFloat(volume);
         if (isNaN(volumeValue)) {
@@ -12,9 +17,6 @@ const VolumeConverter: React.FC = () => {
             return;
         }
 
-        let liters: number;
-        let milliliters: number;
-        let gallons: number;
 
         // Conversão dependendo da unidade selecionada
         if (unit === 'L') {

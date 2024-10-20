@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 
+type TimeUnit = 'segundos' | 'minutos' | 'horas' | 'dias';
+
+const units: Record<TimeUnit, number> = {
+    segundos: 1,
+    minutos: 60,
+    horas: 3600,
+    dias: 86400,
+};
+
 const TimeConverter: React.FC = () => {
     const [value, setValue] = useState<string>('');
-    const [fromUnit, setFromUnit] = useState<string>('segundos');
-    const [toUnit, setToUnit] = useState<string>('segundos');
+    const [fromUnit, setFromUnit] = useState<TimeUnit>('segundos');
+    const [toUnit, setToUnit] = useState<TimeUnit>('segundos');
     const [result, setResult] = useState<string[]>([]);
-
-    const units = {
-        segundos: 1,
-        minutos: 60,
-        horas: 3600,
-        dias: 86400,
-    };
 
     const convert = () => {
         const inputValue = parseFloat(value);
-        if (isNaN(inputValue)) {
+        if (isNaN(inputValue) || inputValue < 0) {
             setResult(["Por favor, insira um valor válido."]);
             return;
         }
@@ -41,7 +43,7 @@ const TimeConverter: React.FC = () => {
             />
             <select 
                 value={fromUnit} 
-                onChange={(e) => setFromUnit(e.target.value)} 
+                onChange={(e) => setFromUnit(e.target.value as TimeUnit)} 
                 style={{ padding: '10px', fontSize: '16px', margin: '10px' }}
             >
                 {Object.keys(units).map((unit) => (
@@ -50,10 +52,10 @@ const TimeConverter: React.FC = () => {
                     </option>
                 ))}
             </select>
-            <span>para</span>
+            <span> para </span>
             <select 
                 value={toUnit} 
-                onChange={(e) => setToUnit(e.target.value)} 
+                onChange={(e) => setToUnit(e.target.value as TimeUnit)} 
                 style={{ padding: '10px', fontSize: '16px', margin: '10px' }}
             >
                 {Object.keys(units).map((unit) => (

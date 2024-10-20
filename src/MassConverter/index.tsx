@@ -5,16 +5,16 @@ const MassConverter: React.FC = () => {
     const [unit, setUnit] = useState<string>('g');
     const [result, setResult] = useState<string[]>([]);
 
+            let grams: number;
+        let kilograms: number;
+        let pounds: number;
+
     const convert = () => {
         const massValue = parseFloat(mass);
         if (isNaN(massValue)) {
             setResult(["Por favor, insira um valor válido."]);
             return;
         }
-
-        let grams: number;
-        let kilograms: number;
-        let pounds: number;
 
         // Conversão dependendo da unidade selecionada
         if (unit === 'g') {

@@ -5,6 +5,11 @@ const SpeedConverter: React.FC = () => {
     const [unit, setUnit] = useState<string>('km/h');
     const [result, setResult] = useState<string[]>([]);
 
+
+        let kmh: number;
+        let ms: number;
+        let mph: number;
+
     const convert = () => {
         const speedValue = parseFloat(speed);
         if (isNaN(speedValue)) {
@@ -12,9 +17,6 @@ const SpeedConverter: React.FC = () => {
             return;
         }
 
-        let kmh: number;
-        let ms: number;
-        let mph: number;
 
         // Conversão dependendo da unidade selecionada
         if (unit === 'km/h') {

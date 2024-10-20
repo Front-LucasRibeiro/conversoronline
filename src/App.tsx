@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import AreaConverter from './AreaConverter';
 import DistanceConverter from './DistanceConverter';

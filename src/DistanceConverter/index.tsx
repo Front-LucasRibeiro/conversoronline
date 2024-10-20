@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export default function DistanceConverter() {
     const [kilometers, setKilometers] = useState('');
-    const [result, setResult] = useState<unknown>([]);
+    const [result, setResult] = useState<string[]>([]);
 
     const convert = () => {
         const kmValue = parseFloat(kilometers);

@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 
+type Unit = 'W' | 'hp' | 'BTU';
+
+interface UnitInfo {
+    name: string;
+    factor: number;
+}
+
+const units: Record<Unit, UnitInfo> = {
+    W: { name: 'Watts', factor: 1 },
+    hp: { name: 'Cavalos-vapor', factor: 745.7 },
+    BTU: { name: 'BTU/h', factor: 0.293071 },
+};
+
 const PowerConverter: React.FC = () => {
     const [amount, setAmount] = useState<string>('');
-    const [fromUnit, setFromUnit] = useState<string>('W');
-    const [toUnit, setToUnit] = useState<string>('hp');
+    const [fromUnit, setFromUnit] = useState<Unit>('W');
+    const [toUnit, setToUnit] = useState<Unit>('hp');
     const [result, setResult] = useState<string | null>(null);
-
-    const units = {
-        W: { name: 'Watts', factor: 1 },
-        hp: { name: 'Cavalos-vapor', factor: 745.7 },
-        BTU: { name: 'BTU/h', factor: 0.293071 },
-    };
 
     const convertPower = () => {
         const amountValue = parseFloat(amount);
@@ -40,7 +47,7 @@ const PowerConverter: React.FC = () => {
             />
             <select 
                 value={fromUnit} 
-                onChange={(e) => setFromUnit(e.target.value)} 
+                onChange={(e) => setFromUnit(e.target.value as Unit)} 
                 style={{ padding: '10px', fontSize: '16px', margin: '10px' }}
             >
                 {Object.entries(units).map(([key, { name }]) => (
@@ -50,7 +57,7 @@ const PowerConverter: React.FC = () => {
             <span style={{ fontSize: '20px' }}> para </span>
             <select 
                 value={toUnit} 
-                onChange={(e) => setToUnit(e.target.value)} 
+                onChange={(e) => setToUnit(e.target.value as Unit)} 
                 style={{ padding: '10px', fontSize: '16px', margin: '10px' }}
             >
                 {Object.entries(units).map(([key, { name }]) => (

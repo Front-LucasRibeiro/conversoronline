@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export default function PixelConverter() {
     const [pixels, setPixels] = useState('');
-    const [result, setResult] = useState<unknown>([]);
+    const [result, setResult] = useState<string[]>([]);
 
     const convert = () => {
         const pixelValue = parseFloat(pixels);

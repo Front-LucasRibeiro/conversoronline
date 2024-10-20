@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 const MassConverter: React.FC = () => {
+    let grams: number;
+    let kilograms: number;
+    let pounds: number;
     const [mass, setMass] = useState<string>('');
     const [unit, setUnit] = useState<string>('g');
     const [result, setResult] = useState<string[]>([]);
 
-            let grams: number;
-        let kilograms: number;
-        let pounds: number;
 
     const convert = () => {
         const massValue = parseFloat(mass);

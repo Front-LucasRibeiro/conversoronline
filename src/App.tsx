@@ -16,6 +16,18 @@ import TimeConverter from './TimeConverter';
 import DataConverter from './DataConverter';
 import BitConverter from './BitConverter';
 import PressureConverter from './PressureConverter';
+import EnergyConverter from './EnergyConverter';
+import FuelEfficiencyCalculator from './FuelEfficiencyCalculator';
+import CookingConverter from './CookingConverter';
+import SoundConverter from './SoundConverter';
+import MortgageCalculator from './MortgageCalculator';
+import BMIConverter from './BMIConverter';
+import AgeConverter from './AgeConverter';
+import LoanCalculator from './LoanCalculator';
+import ExpenseCalculator from './ExpenseCalculator';
+import BalanceCalculator from './BalanceCalculator';
+import ImageGenerator from './ImageGenerator';
+import ConverterWordToPDF from './ConverterWordToPDF';
 
 const GridContainer = styled.div`
   display: grid;
@@ -72,21 +84,25 @@ const converters = [
   { component: <VolumeConverter />, name: 'Conversor de Volume' },
   { component: <SodaConsumptionCalculator />, name: 'Calculadora de Consumo de Refrigerante' },
   { component: <FuelConsumptionCalculator />, name: 'Calculadora de Consumo de Combustível' },
-  { component: <GasCostCalculator />, name: 'Calculadora de Custo de Gás' },
+  { component: <GasCostCalculator />, name: 'Calculadora de Custo de Gasolina, combustível' },
   { component: <CurrencyConverter />, name: 'Conversor de Moeda' },
   { component: <PowerConverter />, name: 'Conversor de Potência' },
   { component: <TimeConverter />, name: 'Conversor de Tempo' },
   { component: <DataConverter />, name: 'Conversor de Dados' },
   { component: <BitConverter />, name: 'Conversor de Bits' },
   { component: <PressureConverter />, name: 'Conversor de Pressão' },
-  // { component: <EnergyConverter />, name: 'Conversor de Energia' }, // Novo
-  // { component: <FuelEfficiencyCalculator />, name: 'Calculadora de Eficiência de Combustível' }, // Novo
-  // { component: <CookingConverter />, name: 'Conversor de Cozinha' }, // Novo
-  // { component: <SoundConverter />, name: 'Conversor de Som' }, // Novo
-  // { component: <MortgageCalculator />, name: 'Calculadora de Hipoteca' }, // Novo
-  // { component: <BMIConverter />, name: 'Calculadora de IMC' }, // Novo
-  // { component: <AgeConverter />, name: 'Conversor de Idade' }, // Novo
-  // { component: <LoanCalculator />, name: 'Calculadora de Empréstimos' }, // Novo
+  { component: <EnergyConverter />, name: 'Conversor de Energia' },
+  { component: <FuelEfficiencyCalculator />, name: 'Calculadora de Eficiência de Combustível' },
+  { component: <CookingConverter />, name: 'Conversor de Cozinha' },
+  { component: <SoundConverter />, name: 'Conversor de Som' },
+  { component: <MortgageCalculator />, name: 'Calculadora de Hipoteca' },
+  { component: <BMIConverter />, name: 'Calculadora de IMC' },
+  { component: <AgeConverter />, name: 'Conversor de Idade' },
+  { component: <LoanCalculator />, name: 'Calculadora de Empréstimos' },
+  { component: <ConverterWordToPDF />, name: 'Conversor Word para PDF' },
+  { component: <ExpenseCalculator />, name: 'Calculadora de Despesas' },
+  { component: <BalanceCalculator />, name: 'Calculadora de Entradas e Saídas' },
+  { component: <ImageGenerator />, name: 'Gerador de Imagens' },
 ];
 
 function App() {

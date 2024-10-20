@@ -7,34 +7,29 @@ const ImageGenerator: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
-    const generateImage = async () => {
+    const fetchImages = async () => {
         setLoading(true);
         setError(null);
         setImageUrls([]); // Limpa as imagens anteriores
 
-        try {
-            const response = await axios.post(
-                'https://api.freepik.com/v2/images/generate', // Endpoint da Freepik
-                {
-                    mode: "flux",
-                    prompt: prompt,
-                    variations: true,
-                    number_of_images: 4,
-                    safety_filter_type: "",
-                },
-                {
-                    headers: {
-                        'Authorization': `Bearer YOUR_API_KEY`, // Substitua pela sua chave da API Freepik
-                        'Content-Type': 'application/json',
-                    },
-                }
-            );
+        const urlFlickr = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
 
-            // Supondo que a resposta tenha um formato com URLs das imagens
-            setImageUrls(response.data.images); // Ajuste conforme o formato de resposta real
+        try {
+            const response = await axios.get(urlFlickr, {
+                params: {
+                    tags: prompt,
+                    tagmode: "any",
+                    format: "json"
+                }
+            });
+
+            // Limita a 6 imagens
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const images = response.data.items.slice(0, 6).map((item: any) => item.media.m);
+            setImageUrls(images);
         } catch (err) {
-          console.error(err)
-            setError('Erro ao gerar a imagem. Tente novamente.');
+            console.error(err);
+            setError('Erro ao obter imagens do Flickr. Tente novamente.');
         } finally {
             setLoading(false);
         }
@@ -42,28 +37,30 @@ const ImageGenerator: React.FC = () => {
 
     return (
         <div style={{ textAlign: 'center', margin: '20px' }}>
-            <h1>Gerador de Imagens</h1>
+            <h1>Galeria de Imagens do Flickr</h1>
             <input
                 type="text"
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
-                placeholder="Digite o que deseja ver (ex: gato)"
+                placeholder="Digite uma tag (ex: paisagens)"
                 style={{ padding: '10px', fontSize: '16px', margin: '10px' }}
             />
             <button
-                onClick={generateImage}
+                onClick={fetchImages}
                 style={{ padding: '10px', fontSize: '16px', margin: '10px' }}
                 disabled={loading}
             >
-                {loading ? 'Gerando...' : 'Gerar Imagem'}
+                {loading ? 'Buscando...' : 'Buscar Imagens'}
             </button>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {imageUrls.length > 0 && (
                 <div>
-                    <h2>Imagens Geradas:</h2>
-                    {imageUrls.map((url, index) => (
-                        <img key={index} src={url} alt={`${prompt} ${index + 1}`} style={{ maxWidth: '100%', height: 'auto', margin: '10px' }} />
-                    ))}
+                    <h2>Imagens Encontradas:</h2>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+                        {imageUrls.map((url, index) => (
+                            <img key={index} src={url} alt={`Imagem ${index + 1}`} style={{ maxWidth: '200px', height: 'auto', margin: '10px' }} />
+                        ))}
+                    </div>
                 </div>
             )}
         </div>

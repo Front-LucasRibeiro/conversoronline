@@ -81,7 +81,7 @@ const CurrencyConverter: React.FC = () => {
     };
 
     return (
-        <div style={{ textAlign: 'center', margin: '20px' }}>
+        <div style={{ textAlign: 'center' }}>
             <h1>Conversor de Moeda</h1>
             {loading ? (
                 <p>Carregando taxas de câmbio...</p>

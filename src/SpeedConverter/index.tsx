@@ -42,7 +42,7 @@ const SpeedConverter: React.FC = () => {
     };
 
     return (
-        <div style={{ textAlign: 'center', margin: '20px' }}>
+        <div style={{ textAlign: 'center' }}>
             <h1>Conversor de Velocidade</h1>
             <input 
                 type="number" 

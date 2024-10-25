@@ -74,6 +74,11 @@ const PaginationContainer = styled.div`
     margin: 0 5px;
   }
 `;
+const Title = styled.h2`
+  font-size: 19px;
+  padding: 14px;
+  font-weight: 500;
+`;
 
 const converters = [
   { component: <PixelConverter />, name: 'Conversor de Pixels' },
@@ -123,9 +128,9 @@ function Home() {
 
   return (
     <div>
-      <Typography variant='h2' sx={{fontSize: '19px', padding: '32px 14px'}}>
+      <Title>
         Bem-vindo ao nosso site, onde oferecemos uma ferramenta completa para facilitar suas necessidades diárias! Aqui, você encontrará conversores intuitivos para transformar unidades de medida de maneira rápida e fácil, além de calculadoras que simplificam desde operações básicas até cálculos mais complexos. Também disponibilizamos geradores de imagens que permitem criar visuais impressionantes em poucos cliques. Nossa missão é proporcionar uma experiência eficiente e acessível, ajudando você a economizar tempo e a potencializar sua criatividade!
-      </Typography>
+      </Title>
       <Menu>
         <FilterInput 
           type="text" 

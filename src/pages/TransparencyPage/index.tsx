@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, Typography, Paper, Box, Link } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 

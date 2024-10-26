@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import CookiePolicyModal from '../CookiePolicyModal';
 import { FooterWrap } from './styles';
 
@@ -25,10 +26,10 @@ const Footer = () => {
     <FooterWrap>
       <p style={styles.text}>© {new Date().getFullYear()} Conversor Online. Todos os direitos reservados.</p>
       <p style={styles.text}>
-        <a href="/sobre" style={styles.link}>Sobre nós</a> |
-        <a href="/politica-de-privacidade" style={styles.link}>Política de Privacidade</a> | 
-        <a href="/politica-de-transparencia" style={styles.link}>Política de Transparência</a> | 
-        <a href="/contato" style={styles.link}> Contato</a>
+        <Link to="/sobre" style={styles.link}>Sobre nós</Link> |
+        <Link to="/politica-de-privacidade" style={styles.link}>Política de Privacidade</Link> | 
+        <Link to="/politica-de-transparencia" style={styles.link}>Política de Transparência</Link> | 
+        <Link to="/contato" style={styles.link}> Contato</Link>
       </p>
       <CookiePolicyModal />
     </FooterWrap>

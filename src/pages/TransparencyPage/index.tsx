@@ -40,7 +40,7 @@ const TransparencyPage = () => {
 
       <Box mt={4} textAlign="center">
         <Typography variant="body2" color="textSecondary">
-          &copy; 2024 [Nome do Site]. Todos os direitos reservados.
+          &copy; 2024 <NavLink to="https://conversoronline.com.br">Conversor Online</NavLink>. Todos os direitos reservados.
         </Typography>
       </Box>
     </Container>

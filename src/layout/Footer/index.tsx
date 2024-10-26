@@ -1,3 +1,4 @@
+import CookiePolicyModal from '../CookiePolicyModal';
 import { FooterWrap } from './styles';
 
 const styles = {
@@ -23,10 +24,13 @@ const Footer = () => {
   return (
     <FooterWrap>
       <p style={styles.text}>© {new Date().getFullYear()} Conversor Online. Todos os direitos reservados.</p>
-      {/* <p style={styles.text}>
+      <p style={styles.text}>
+        <a href="/sobre" style={styles.link}>Sobre nós</a> |
         <a href="/politica-de-privacidade" style={styles.link}>Política de Privacidade</a> | 
-        <a href="/termos-de-uso" style={styles.link}> Termos de Uso</a>
-      </p> */}
+        <a href="/politica-de-transparencia" style={styles.link}>Política de Transparência</a> | 
+        <a href="/contato" style={styles.link}> Contato</a>
+      </p>
+      <CookiePolicyModal />
     </FooterWrap>
   );
 };

@@ -7,4 +7,5 @@ export const FooterWrap = styled.footer`
   background: #dedede;
   padding: 32px 14px;
   margin-top: 48px;
+  width: 100%;
 `

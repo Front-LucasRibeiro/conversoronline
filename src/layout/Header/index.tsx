@@ -19,6 +19,7 @@ export default function Header() {
     { text: 'Home', path: '/' },
     { text: 'Conversores', path: '/conversores' },
     { text: 'Calculadoras', path: '/calculadoras' },
+    { text: 'Gerador de imagens', path: '/gerador-de-imagens' },
     { text: 'Sobre', path: '/sobre' }
   ];
 

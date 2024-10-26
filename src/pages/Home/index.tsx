@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { Typography } from '@mui/material';
 import AgeConverter from '../../AgeConverter';
 import AreaConverter from '../../AreaConverter';
 import BalanceCalculator from '../../BalanceCalculator';
@@ -29,6 +28,7 @@ import SpeedConverter from '../../SpeedConverter';
 import TemperatureConverter from '../../TemperatureConverter';
 import TimeConverter from '../../TimeConverter';
 import VolumeConverter from '../../VolumeConverter';
+import Filter from '../../layout/Filter';
 
 const GridContainer = styled.div`
   display: grid;
@@ -56,13 +56,6 @@ const Menu = styled.div`
   margin-bottom: 20px;
 `;
 
-const FilterInput = styled.input`
-  padding: 10px;
-  font-size: 16px;
-  width: 100%;
-  margin: 0 12px;
-`;
-
 const PaginationContainer = styled.div`
   display: flex;
   align-items: center;
@@ -76,6 +69,7 @@ const PaginationContainer = styled.div`
 `;
 const Title = styled.h2`
   font-size: 19px;
+  line-height: 24px;
   padding: 14px;
   font-weight: 500;
 `;
@@ -132,12 +126,7 @@ function Home() {
         Bem-vindo ao nosso site, onde oferecemos uma ferramenta completa para facilitar suas necessidades diárias! Aqui, você encontrará conversores intuitivos para transformar unidades de medida de maneira rápida e fácil, além de calculadoras que simplificam desde operações básicas até cálculos mais complexos. Também disponibilizamos geradores de imagens que permitem criar visuais impressionantes em poucos cliques. Nossa missão é proporcionar uma experiência eficiente e acessível, ajudando você a economizar tempo e a potencializar sua criatividade!
       </Title>
       <Menu>
-        <FilterInput 
-          type="text" 
-          placeholder="Filtrar conversores..." 
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)} 
-        />
+        <Filter filter={filter} setFilter={setFilter} />
       </Menu>
       <GridContainer>
         {currentConverters.map((converter, index) => (

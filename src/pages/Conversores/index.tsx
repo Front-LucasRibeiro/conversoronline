@@ -19,6 +19,7 @@ import SoundConverter from '../../SoundConverter';
 import SpeedConverter from '../../SpeedConverter';
 import TimeConverter from '../../TimeConverter';
 import VolumeConverter from '../../VolumeConverter';
+import Filter from '../../layout/Filter';
 
 const GridContainer = styled.div`
   display: grid;
@@ -44,13 +45,6 @@ const Menu = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
-`;
-
-const FilterInput = styled.input`
-  padding: 10px;
-  font-size: 16px;
-  width: 100%;
-  margin: 32px 12px 0;
 `;
 
 const PaginationContainer = styled.div`
@@ -105,12 +99,7 @@ function Conversores() {
   return (
     <div style={{width: '100%'}}>
       <Menu>
-        <FilterInput 
-          type="text" 
-          placeholder="Filtrar conversores..." 
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)} 
-        />
+        <Filter filter={filter} setFilter={setFilter} />
       </Menu>
       <GridContainer>
         {currentConverters.map((converter, index) => (

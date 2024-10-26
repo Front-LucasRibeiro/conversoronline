@@ -1,14 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import BalanceCalculator from '../../BalanceCalculator';
-import BMIConverter from '../../BMIConverter';
-import ExpenseCalculator from '../../ExpenseCalculator';
-import FuelConsumptionCalculator from '../../FuelConsumptionCalculator';
-import FuelEfficiencyCalculator from '../../FuelEfficiencyCalculator';
-import GasCostCalculator from '../../GasCostCalculator';
-import LoanCalculator from '../../LoanCalculator';
-import MortgageCalculator from '../../MortgageCalculator';
-import SodaConsumptionCalculator from '../../SodaConsumptionCalculator';
+import ImageGenerator from '../../ImageGenerator';
 import Filter from '../../layout/Filter';
 
 const GridContainer = styled.div`
@@ -37,13 +29,6 @@ const Menu = styled.div`
   margin-bottom: 20px;
 `;
 
-export const FilterInput = styled.input`
-  padding: 10px 42px 10px 10px;
-  font-size: 16px;
-  width: 100%;
-  margin: 0 12px;
-`;
-
 const PaginationContainer = styled.div`
   display: flex;
   align-items: center;
@@ -55,20 +40,18 @@ const PaginationContainer = styled.div`
     margin: 0 5px;
   }
 `;
+const Title = styled.h2`
+  font-size: 19px;
+  line-height: 24px;
+  padding: 14px;
+  font-weight: 500;
+`;
 
 const converters = [
-  { component: <SodaConsumptionCalculator />, name: 'Calculadora de Consumo de Refrigerante' },
-  { component: <FuelConsumptionCalculator />, name: 'Calculadora de Consumo de Combustível' },
-  { component: <GasCostCalculator />, name: 'Calculadora de Custo de Gasolina, combustível' },
-  { component: <FuelEfficiencyCalculator />, name: 'Calculadora de Eficiência de Combustível' },
-  { component: <MortgageCalculator />, name: 'Calculadora de Hipoteca' },
-  { component: <LoanCalculator />, name: 'Calculadora de Empréstimos' },
-  { component: <ExpenseCalculator />, name: 'Calculadora de Despesas' },
-  { component: <BalanceCalculator />, name: 'Calculadora de Entradas e Saídas' },
-  { component: <BMIConverter />, name: 'Calculadora de IMC' },
+  { component: <ImageGenerator />, name: 'Gerador de Imagens, galeria de fotos' },
 ];
 
-function Calculadoras() {
+function GeradorImagens() {
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
@@ -85,6 +68,9 @@ function Calculadoras() {
 
   return (
     <div>
+      <Title>
+        Bem-vindo ao nosso site, onde oferecemos uma ferramenta completa para facilitar suas necessidades diárias! Aqui, você encontrará conversores intuitivos para transformar unidades de medida de maneira rápida e fácil, além de calculadoras que simplificam desde operações básicas até cálculos mais complexos. Também disponibilizamos geradores de imagens que permitem criar visuais impressionantes em poucos cliques. Nossa missão é proporcionar uma experiência eficiente e acessível, ajudando você a economizar tempo e a potencializar sua criatividade!
+      </Title>
       <Menu>
         <Filter filter={filter} setFilter={setFilter} />
       </Menu>
@@ -112,4 +98,4 @@ function Calculadoras() {
   );
 }
 
-export default Calculadoras;
+export default GeradorImagens;

@@ -25,8 +25,8 @@ const Sobre = () => {
       <h1>Sobre Nossa Ferramenta</h1>
       <p style={styles.paragraph}>
         Bem-vindo à nossa plataforma inovadora, onde simplificamos suas tarefas do dia a dia com ferramentas práticas e eficientes! 
-        Nossa ferramenta de <strong>conversores</strong> permite transformar unidades de medida com facilidade, economizando seu tempo e esforço. 
-        Chega de se perder em cálculos complicados; nossos <strong>calculadoras</strong> são projetadas para oferecer resultados rápidos e precisos, 
+        Nossa ferramenta de <strong><a href="https://conversoronline.com.br" target="_blank" rel="noopener noreferrer">Conversor Online</a></strong> permite transformar unidades de medida com facilidade, economizando seu tempo e esforço. 
+        Chega de se perder em cálculos complicados; nossas <strong><a href="/calculadoras" target="_blank">calculadoras</a></strong> são projetadas para oferecer resultados rápidos e precisos, 
         seja para matemática básica ou problemas mais complexos.
       </p>
       <p style={styles.paragraph}>

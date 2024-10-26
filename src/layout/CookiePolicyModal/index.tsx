@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import { Modal, Box, Typography, Button } from '@mui/material';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const StyledModal = styled(Modal)`

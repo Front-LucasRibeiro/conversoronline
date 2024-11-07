@@ -1,4 +1,4 @@
-import { Container, Typography, Paper, Box, Link } from '@mui/material';
+import { Container, Typography, Paper, Link } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 const TermsOfUsePage = () => {

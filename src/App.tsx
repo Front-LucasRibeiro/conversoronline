@@ -7,6 +7,7 @@ import PoliticaPrivacidade from './pages/PoliticaPrivacidade';
 import Contato from './pages/Contato';
 import GeradorImagens from './pages/GeradorImagens';
 import TransparencyPage from './pages/TransparencyPage';
+import TermsOfUsePage from './pages/TermsPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/gerador-de-imagens" element={<GeradorImagens />} />
       <Route path="/sobre" element={<Sobre />} />
       <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
+      <Route path="/termos-de-uso" element={<TermsOfUsePage />} />
       <Route path="/politica-de-transparencia" element={<TransparencyPage />} />
       <Route path="/contato" element={<Contato />} />
     </Routes>

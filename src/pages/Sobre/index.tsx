@@ -1,3 +1,5 @@
+import { Typography } from '@mui/material';
+
 const styles = {
   container: {
     padding: '20px',
@@ -6,7 +8,6 @@ const styles = {
     fontFamily: 'Arial, sans-serif',
     lineHeight: '1.6',
     marginTop: '5%',
-    minHeight: '63vh',
   },
   title: {
     fontSize: '2rem',
@@ -39,6 +40,9 @@ const Sobre = () => {
         Junte-se a milhares de usuários satisfeitos que já estão aproveitando a praticidade e a eficiência que oferecemos. 
         Estamos aqui para facilitar sua vida e potencializar seu trabalho!
       </p>
+      <Typography variant="body2" align="right" style={{ marginTop: '20px', fontStyle: 'italic' }}>
+        Última atualização: 25 de outubro de 2024
+      </Typography>
     </div>
   );
 };

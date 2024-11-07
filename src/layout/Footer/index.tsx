@@ -24,11 +24,12 @@ const styles = {
 const Footer = () => {
   return (
     <FooterWrap>
-      <p style={styles.text}>© {new Date().getFullYear()} Conversor Online. Todos os direitos reservados.</p>
+      <p style={styles.text}>© {new Date().getFullYear()} Conversor Online -  CNPJ: 37.810.374/0001-82 - Todos os direitos reservados.</p>
       <p style={styles.text}>
         <Link to="/sobre" style={styles.link}>Sobre nós</Link> |
         <Link to="/politica-de-privacidade" style={styles.link}>Política de Privacidade</Link> | 
         <Link to="/politica-de-transparencia" style={styles.link}>Política de Transparência</Link> | 
+        <Link to="/termos-de-uso" style={styles.link}>Termos de uso</Link> | 
         <Link to="/contato" style={styles.link}> Contato</Link>
       </p>
       <CookiePolicyModal />

@@ -1,4 +1,5 @@
 import { Container, Typography, Paper } from '@mui/material';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledPaper = styled(Paper)`
@@ -6,6 +7,14 @@ const StyledPaper = styled(Paper)`
   margin: 20px auto;
   max-width: 800px;
   background-color: #f9f9f9;
+
+  a{
+    color: rgb(0, 123, 255);
+
+    &:hover{
+      text-decoration: underline;
+    }
+  } 
 `;
 
 const PoliticaPrivacidade = () => {
@@ -52,6 +61,13 @@ const PoliticaPrivacidade = () => {
         </Typography>
         <Typography variant="body1" paragraph>
           Podemos atualizar esta Política de Privacidade ocasionalmente e notificaremos você sobre mudanças significativas.
+        </Typography>
+
+        <Typography variant="h6" component="h2" gutterBottom>
+          Contato
+        </Typography>
+        <Typography variant="body1" paragraph>
+          Se você tiver dúvidas ou preocupações sobre esta política de privacidade, entre em contato conosco através do e-mail: <Link to='mailto:contato@sistemasflex.com.br' target='_blank'>contato@sistemasflex.com.br</Link>.
         </Typography>
 
         <Typography variant="body1" paragraph>

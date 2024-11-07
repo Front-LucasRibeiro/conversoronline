@@ -36,13 +36,11 @@ const TransparencyPage = () => {
         <Typography paragraph>
           Este site utiliza o Google AdSense para veicular anúncios relevantes. O Google pode coletar informações sobre suas visitas a este e outros sites para fornecer anúncios direcionados. Para saber mais sobre como isso funciona, consulte a <Link href="https://policies.google.com/technologies/partner-sites" target="_blank">Política de Privacidade do Google</Link>.
         </Typography>
-      </Paper>
 
-      <Box mt={4} textAlign="center">
-        <Typography variant="body2" color="textSecondary">
-          &copy; 2024 <NavLink to="https://conversoronline.com.br">Conversor Online</NavLink>. Todos os direitos reservados.
+        <Typography variant="body2" align="right" style={{ marginTop: '20px', fontStyle: 'italic' }}>
+          Última atualização: 25 de outubro de 2024
         </Typography>
-      </Box>
+      </Paper>
     </Container>
   );
 };
